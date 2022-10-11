@@ -42,7 +42,7 @@ class TelExam():
         # print("y shape =", np.shape(y))
         # print("y type = ", type(y))
         hop_length = 1
-        frame_length = 40
+        frame_length = 10
         pad_y = np.concatenate((np.zeros(frame_length//2), y, np.zeros(frame_length//2)))
         rms = np.sqrt(np.array([sum(abs(pad_y[i-frame_length//2:i+frame_length//2]**2))/frame_length for i in range(frame_length//2, np.shape(y)[0]+frame_length//2, hop_length)]))
         # print("rms shape =", np.shape(rms))
