@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from source import TelExam
+import csv
 
 # Initialisation of a TelExam object
 project = TelExam()
