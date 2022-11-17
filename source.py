@@ -75,7 +75,7 @@ class TelExam():
         x_axis = np.arange(np.shape(data)[0])
         # print("x_axis shape= ", np.shape(x_axis))
         # print("separated[:,0].shape =", np.shape(data[:,0]))
-        labels = ['theta_x', 'theta_y', 'theta_z', 'EMG']
+        labels = ['theta_x', 'theta_y', 'theta_z', 'GC', 'VM']
 
         fig, ax = plt.subplots(figsize=(18,10))
         if data_to_show == []:
@@ -87,7 +87,8 @@ class TelExam():
             for j in data_to_show:
                 ax.plot(x_axis, data[:,j], label=labels[j])
                 if j == data_amount - 1:
-                    ax.legend(loc = 'upper left', bbox_to_anchor=(1.02,1))                
+                    ax.legend(loc = 'upper left', bbox_to_anchor=(1.02,1))
+        plt.ylabel("Amplitud [mV]")           
         plt.show()
     
     def generate_fft_and_plot(self, x):
