@@ -14,13 +14,20 @@ print("project.folderpath = ", project.folder_path)
 # rms_value = project.mvc_calibration(data_mvc[915:1119,:]) # selected interval for the same ang_emg file
 
 # Get angle and EMG data for analysis
-data, data_amount = project.get_data('con_rodillera.txt')
-print(np.shape(data))
-print(data_amount)
-project.plot_data(data[3400:5700], data_amount) # 0 theta_x, 1 theta_y, 2 theta_z, 3 EMG1, 4 EMG2
-emg_data = data[3400:5700,3]
-freq, y = project.generate_fft_and_plot(emg_data)
+datacd, data_amount = project.get_data('con_rodillera.txt')
+# datasd, data_amount2 = project.get_data('levertestnoasistido.txt')
+print("shape cd: ", np.shape(datacd))
+# print("shape sd: ", np.shape(datasd))
+# # print(np.shape(datacd))
+# z = np.zeros((np.shape(datasd)[0], 10))
+# z[:np.shape(datacd)[0], 0:5] = datacd
+# z[:np.shape(datasd)[0], 5:] = datasd
+# # print(data_amount)
+project.plot_data(datacd, data_amount) # 0 theta_x, 1 theta_y, 2 theta_z, 3 EMG1, 4 EMG2
+# project.plot_data(datasd[:,:3], 3)
+# emg_data = data[:,3]
+freq, y = project.generate_fft_and_plot(datacd)
 # t, filtered_data = project.low_pass(freq, y)
 # data_rms = project.rms(emg_data)
 # filtered_data_rms = project.rms(filtered_data)
-project.eda_process(data[:,4], sampling_rate=37)
+# project.eda_process(data[:,4], sampling_rate=37)
