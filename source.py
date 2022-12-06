@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from scipy.fft import fft, ifft, fftshift, ifftshift, fftfreq
-import neurokit2 as nk
+# import neurokit2 as nk
 
 class TelExam():
     def __init__(self):
@@ -75,7 +75,7 @@ class TelExam():
         x_axis = np.arange(np.shape(data)[0])
         # print("x_axis shape= ", np.shape(x_axis))
         # print("separated[:,0].shape =", np.shape(data[:,0]))
-        labels = ['theta_x', 'theta_y', 'theta_z', 'GC', 'VM']
+        labels = ['VM', 'GC', 'theta_x', 'theta_y', 'theta_z', 'theta_x2', 'theta_y2', 'theta_z2']
 
         fig, ax = plt.subplots(figsize=(18,10))
         if data_amount == 1:
@@ -146,3 +146,34 @@ class TelExam():
         min_value = np.min(x)
         x = x - min_value
         return x, min_value
+
+    def read_from_realtime(self, filename):
+        loc = os.path.join(self.folder_path, filename)
+        # print("location =", loc)
+        data = open(loc, 'r')
+        contents = data.read()
+        measurements = np.array(contents.split('\n')) # líneas
+        print("Measurements shape = ", )
+        data_amount = 8
+
+        measure_num = np.shape(measurements)[0] # cantidad de líneas 
+        
+        amount_of_whole_data_lines = measure_num//8
+
+        separated = np.zeros((amount_of_whole_data_lines,data_amount)) # cantidad de líneas, cantidad de datos
+
+        for i in range(measure_num):
+            line = measurements[i]
+            q = i//8
+            r = i%8
+
+            if line != [''] and q < amount_of_whole_data_lines:
+                print(f"valid line q {q} r {r}=", line)
+                separated[q,r] = line
+        # print(separated)
+
+        separated = separated[:measure_num-1,:]
+        
+        data.close()
+
+        return separated, data_amount
