@@ -6,12 +6,12 @@
 #include <PubSubClient.h>
 #include "SoftwareSerial.h"
 //Conexión a la red wifi: nombre de la red y contraseña
-#define WIFI_AP "Dpto910"
-#define WIFI_PASSWORD "Bm910019"
+#define WIFI_AP "iPhone de Bastián"
+#define WIFI_PASSWORD "luzmi04356"
 
 ///////////////////////////////////////////// Red
 //Nombre o IP del servidor mosquitto
-char server[50] = "192.168.100.7";
+char server[50] = "172.20.10.6";
 
 //Inicializamos el objeto de cliente esp
 WiFiEspClient espClient;

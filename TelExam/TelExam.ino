@@ -33,15 +33,16 @@ float ang_x_prev2, ang_y_prev2, ang_z_prev2;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(74880);    //Iniciando puerto serial
+  Serial.begin(19200);    //Iniciando puerto serial
   Wire.begin();           //Iniciando I2C  
   sensor.initialize();    //Iniciando el sensor
   sensor2.initialize();
-
+  /*
   if (sensor.testConnection()) Serial.println("Sensor iniciado correctamente");
   else Serial.println("Error al iniciar el sensor");
   if (sensor2.testConnection()) Serial.println("Sensor2 iniciado correctamente");
   else Serial.println("Error al iniciar el sensor2");
+  */
 }
 
 void loop() {
@@ -89,18 +90,18 @@ void loop() {
   //Mostrar los angulos separadas por un [tab]
 
   //Serial.print("Rotacion en X:  ");
-  Serial.print(ang_x); Serial.print(",");
+  //Serial.print(ang_x); Serial.print(",");
   //Serial.print("Rotacion en Y: ");
-  Serial.print(ang_y); Serial.print(",");
+  //Serial.print(ang_y); Serial.print(",");
   //Serial.print("Rotacion en Z: ");
-  Serial.print(ang_z); Serial.print(",");
+  //Serial.print(ang_z); Serial.print(",");
 
-  Serial.print("Rotacion en X2:  ");
-  Serial.print(ang_x2); Serial.print(",");
-  Serial.print("Rotacion en Y2: ");
-  Serial.print(ang_y2); Serial.print(",");
-  Serial.print("Rotacion en Z2: ");
-  Serial.print(ang_z2); Serial.print(",");
+  //Serial.print("Rotacion en X2:  ");
+  //Serial.print(ang_x2); Serial.print(",");
+  // Serial.print("Rotacion en Y2: ");
+  //Serial.print(ang_y2); Serial.print(",");
+  //Serial.print("Rotacion en Z2: ");
+  Serial.print(ang_z2-ang_z); Serial.print(",");
 
   
   EMGVal_vm = analogRead(EMGPin_vm);
@@ -111,5 +112,5 @@ void loop() {
   Serial.print(EMGVal_vm); Serial.print(",");
   Serial.print(EMGVal_gc); 
   Serial.println("\n");
-  delay(10);
+  delay(1);
 }
